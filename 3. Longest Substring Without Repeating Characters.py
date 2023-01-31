@@ -7,8 +7,13 @@ def lengthOfLongestSubstring(s: str) -> int:
         if s[i] in hashmap:
             if res < len(hashmap):
                 res = len(hashmap)
-            i = hashmap[s[i]] + 1
-            hashmap.clear()
+
+            j = hashmap[s[i]]
+            d = []
+            for k, v in hashmap.items():
+                if v <= j:
+                    d.append(k)
+            [hashmap.pop(n) for n in d]
         else:
             hashmap[s[i]] = i
             i += 1
